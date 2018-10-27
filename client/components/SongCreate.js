@@ -15,11 +15,10 @@ class SongCreate extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(this.props)
-        // let res = await this.props.mutate({
-        //     variables: { title: this.state.title }
-        // });
-        // this.props.history.push('/');
+        await this.props.mutate({
+            variables: { title: this.state.title }
+        });
+        this.props.history.push('/');
     }
 
     render() {

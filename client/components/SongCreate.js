@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 class SongCreate extends Component {
@@ -12,18 +13,19 @@ class SongCreate extends Component {
         this.setState({ [name]: value })
     };
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        this.props.mutate({
-            variables: {
-                title: this.state.title
-            }
-        })
+        console.log(this.props)
+        // let res = await this.props.mutate({
+        //     variables: { title: this.state.title }
+        // });
+        // this.props.history.push('/');
     }
 
     render() {
         return (
             <div>
+                <Link to="/">Back</Link>
                 <h3>Create a New Song</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label>Song Title:</label>

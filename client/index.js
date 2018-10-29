@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
 import Layout from './components/Layout';
 import './style/style.css';
 
@@ -19,6 +20,7 @@ const Root = () => {
         <Layout>
           <Route exact path="/" component={SongList} />
           <Route path="/songs/new" component={SongCreate} />
+          <Route path="/songs/:id" component={SongDetail} />
         </Layout>
       </Router>
     </ApolloProvider>

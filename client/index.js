@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import Layout from './components/Layout';
+import './style/style.css';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"

@@ -5,9 +5,10 @@ import fetchSongs from '../queries/fetchSongs';
 import deleteSong from '../queries/deleteSong';
 
 class SongList extends Component {
-    onSongDelete = id => {
-        this.props.mutate({ variables: { id } });
-    }
+    onSongDelete = async id => {
+        await this.props.mutate({ variables: { id } });
+        this.props.data.refetch(); // Refetch method will execute any queries associated with the component.
+    };
 
     renderSongs() {
         return this.props.data.songs.map(({id, title}) => {

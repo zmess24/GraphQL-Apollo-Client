@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import fetchSong from '../queries/fetchSong';
 import LyricCreate from './LyricCreate';
+import LyricList from '../components/LyricList';
 
 const SongDetail = ({ data, match }) => {
     let { song } = data;
@@ -11,6 +12,7 @@ const SongDetail = ({ data, match }) => {
         <div>
             <Link to="/">Back</Link>
             <h3>{song.title}</h3>
+            <LyricList lyrics={song.lyrics} />
             <LyricCreate songId={match.params.id}/>
         </div>
     )

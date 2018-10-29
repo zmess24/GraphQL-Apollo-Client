@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
+import fetchSongs from '../queries/fetchSongs';
 
 class SongCreate extends Component {
     state = {
@@ -16,8 +17,9 @@ class SongCreate extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         await this.props.mutate({
-            variables: { title: this.state.title }
-        });
+            variables: { title: this.state.title },
+            refetchQueries: [{ query: fetchSongs }] // Refetch Queries because of react apollo warm caching.
+        }); // 'mutate' method available to us through graphql wrapper.
         this.props.history.push('/');
     }
 

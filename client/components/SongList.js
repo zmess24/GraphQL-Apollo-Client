@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import fetchSongs from '../queries/fetchSongs';
+import deleteSong from '../queries/deleteSong';
 
 class SongList extends Component {
+    onSongDelete = id => {
+        this.props.mutate({ variables: { id } });
+    }
+
     renderSongs() {
-        return this.props.data.songs.map(song => {
+        return this.props.data.songs.map(({id, title}) => {
             return (
-                <li key={song.id} className="collection-item">
-                    {song.title}
+                <li key={id} className="collection-item">
+                    {title}
+                    <i className="material-icons" onClick={() => this.onSongDelete(id)}>
+                        delete
+                    </i>
                 </li>
             )
         });
@@ -29,4 +37,6 @@ class SongList extends Component {
     }
 };
 
-export default graphql(fetchSongs)(SongList);
+export default graphql(deleteSong)(
+    graphql(fetchSongs)(SongList)
+); // Need to invoke graphql twice in order to pass down multiple queries.

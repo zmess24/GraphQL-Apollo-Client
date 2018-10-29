@@ -1,15 +1,17 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
-import fetchSong from '../queries/fetchSong';
 import { Link } from 'react-router-dom';
+import fetchSong from '../queries/fetchSong';
+import LyricCreate from './LyricCreate';
 
-const SongDetail = ({ data }) => {
+const SongDetail = ({ data, match }) => {
     let { song } = data;
     if (!song) return <div></div>
     return (
         <div>
             <Link to="/">Back</Link>
             <h3>{song.title}</h3>
+            <LyricCreate songId={match.params.id}/>
         </div>
     )
 };

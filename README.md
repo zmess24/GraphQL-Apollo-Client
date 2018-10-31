@@ -1,4 +1,4 @@
-# Lyrical-GraphQL
+# GraphQL: Apollo Client
 
 ## Introduction:
 
